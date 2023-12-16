@@ -1,0 +1,13 @@
+.question {
+  padding: 4rem;
+  padding-bottom: 2rem;
+  border-top: 1px solid grey;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.questionDate {
+  font-size: 12px;
+  align-self: flex-end;
+}
