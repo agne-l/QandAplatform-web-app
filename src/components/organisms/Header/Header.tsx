@@ -1,16 +1,21 @@
 import React from "react";
 import styles from "./Header.module.css";
 import Navbar from "../../molecules/Navbar/Navbar";
+import Link from "next/link";
 
 const Header = () => {
   return (
     <div className={styles.header}>
       <div>
-        <div>logo</div>
+        <Link href="/" className={styles.logo}>
+          logo
+        </Link>
       </div>
       <div className={styles.navbarWrapper}>
         <Navbar />
-        <div>login</div>
+        <Link href="/login" className={styles.login}>
+          log in
+        </Link>
       </div>
     </div>
   );

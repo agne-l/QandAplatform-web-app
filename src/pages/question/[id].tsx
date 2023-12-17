@@ -21,20 +21,28 @@ const QuestionPage = () => {
   const [answers, setAnswers] = useState([]);
 
   const fetchAnswers = async (id: string) => {
-    const response = await axios.get(
-      `http://localhost:3001/answers/questions/${id}`
-    );
-    setAnswers(response.data.answers);
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/answers/questions/${id}`
+      );
+      setAnswers(response.data.answers);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const fetchQuestion = async (id: string) => {
-    const response = await axios.get(`http://localhost:3001/questions/${id}`);
-    setQuestion(response.data.question);
+    try {
+      const response = await axios.get(`http://localhost:3001/questions/${id}`);
+      setQuestion(response.data.question);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
     router.query.id && fetchAnswers(router.query.id as string);
-    fetchQuestion(router.query.id as string);
+    router.query.id && fetchQuestion(router.query.id as string);
   }, [router.query.id]);
 
   return (

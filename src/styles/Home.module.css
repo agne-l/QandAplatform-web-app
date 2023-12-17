@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  /* justify-content: center; */
+  gap: 2rem;
+  /* justify-content: space-between; */
+}
+
+.sidebar {
+  margin-left: 2rem;
+  margin-top: 3rem;
+  width: 15rem;
+  background-color: rgb(243, 240, 240);
+  margin-bottom: 3rem;
+  /* background-color: #039; */
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 20rem;
+}
+
+.textArea {
+  height: 8rem;
+  resize: none;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.submitBtn {
+  width: 100%;
+}
+
+.allQuestionsWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  min-height: 45rem;
+  width: 60%;
+}
