@@ -5,8 +5,15 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  text-decoration: none;
+  color: grey;
+  cursor: default;
 }
 
+.questionText {
+  color: rgb(91, 91, 189);
+  cursor: pointer;
+}
 .questionDate {
   font-size: 12px;
   align-self: flex-end;

@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import Link from "next/link";
+
 import styles from "./Question.module.css";
 
 type QuestionType = {
@@ -14,10 +16,10 @@ type QuestionComponentType = {
 
 const Question: React.FC<QuestionComponentType> = ({ question }) => {
   return (
-    <div className={styles.question}>
-      <div>{question.question_text}</div>
+    <Link href={`/question/${question.id}`} className={styles.question}>
+      <div className={styles.questionText}>{question.question_text}</div>
       <div className={styles.questionDate}>{question.date}</div>
-    </div>
+    </Link>
   );
 };
 
