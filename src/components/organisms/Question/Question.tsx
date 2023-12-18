@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 import Link from "next/link";
 import styles from "./Question.module.css";
 
@@ -15,7 +14,6 @@ type QuestionComponentType = {
 };
 
 const Question: React.FC<QuestionComponentType> = ({ question }) => {
-  const router = useRouter();
   const id = question.id;
 
   const formattedDate = new Date(question.date).toLocaleDateString("en-US", {

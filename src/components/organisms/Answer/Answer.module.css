@@ -1,0 +1,15 @@
+.answer {
+  padding: 4rem;
+  padding-bottom: 2rem;
+  border-top: 1px solid grey;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  color: grey;
+  cursor: default;
+}
+
+.date {
+  font-size: 12px;
+  align-self: flex-end;
+}

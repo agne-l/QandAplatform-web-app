@@ -1,0 +1,38 @@
+.askQuestionForm {
+  background-color: rgb(208, 208, 241);
+  position: fixed;
+  margin: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  /* padding-top: 2rem; */
+  padding-bottom: 3rem;
+
+  width: 35%;
+  height: 45%;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  /* gap: 2rem; */
+  align-items: center;
+  justify-content: space-between;
+}
+
+.textArea {
+  height: 8rem;
+  resize: none;
+  outline: none;
+  width: 60%;
+  box-sizing: border-box;
+}
+
+.submitBtn {
+  width: 60%;
+}
+
+.cancelBtn {
+  all: unset;
+  align-self: self-end;
+}

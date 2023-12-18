@@ -6,33 +6,36 @@ import styles from "../styles/Home.module.css";
 import Header from "../components/organisms/Header/Header";
 import Questions from "../components/organisms/Questions/Questions";
 import Footer from "../components/organisms/Footer/Footer";
+import AskQuestionForm from "../components/organisms/AskQuestionForm/AskQuestionForm";
 
 const HomePage = () => {
   const router = useRouter();
 
-  const [questionText, setQuestionText] = useState("");
+  const [askQuestionForm, setAskQuestionForm] = useState(false);
 
-  const onAddQuestion = async () => {
-    const body = {
-      question_text: questionText,
-    };
+  // const [questionText, setQuestionText] = useState("");
 
-    const headers = {
-      authorization: Cookies.get("jwtToken"),
-    };
+  // const onAddQuestion = async () => {
+  //   const body = {
+  //     question_text: questionText,
+  //   };
 
-    const response = await axios.post(
-      "http://localhost:3001/questions",
-      {
-        ...body,
-      },
-      { headers }
-    );
+  //   const headers = {
+  //     authorization: Cookies.get("jwtToken"),
+  //   };
 
-    if (response.status == 200) {
-      window.location.reload();
-    }
-  };
+  //   const response = await axios.post(
+  //     "http://localhost:3001/questions",
+  //     {
+  //       ...body,
+  //     },
+  //     { headers }
+  //   );
+
+  //   if (response.status == 200) {
+  //     window.location.reload();
+  //   }
+  // };
 
   const [questions, setQuestions] = useState(null);
 
@@ -48,8 +51,8 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <div className={styles.wrapper}>
-        <div className={styles.sidebar}>
+      {/* <div className={styles.wrapper}> */}
+      {/* <div className={styles.sidebar}>
           <div className={styles.formWrapper}>
             <div>Ask Anything</div>
             <textarea
@@ -61,13 +64,18 @@ const HomePage = () => {
               submit
             </button>
           </div>
-        </div>
-        <div className={styles.allQuestionsWrapper}>
+        </div> */}
+      <div className={styles.allQuestionsWrapper}>
+        <div className={styles.topWrapper}>
           <div>All Questions</div>
-          <Questions questions={questions} />
+          <button onClick={() => setAskQuestionForm(true)}>Ask Question</button>
         </div>
-        <div></div>
+        <Questions questions={questions} />
       </div>
+      {/* </div> */}
+      {askQuestionForm && (
+        <AskQuestionForm onCancel={() => setAskQuestionForm(false)} />
+      )}
       <Footer />
     </>
   );

@@ -12,7 +12,19 @@ type AnswerComponentType = {
 };
 
 const Answer: React.FC<AnswerComponentType> = ({ answer }) => {
-  return <div>{answer.answer_text}</div>;
+  const formattedDate = new Date(answer.date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
+  return (
+    <div className={styles.answer}>
+      <div>{answer.answer_text}</div>
+      <div className={styles.date}>{formattedDate}</div>
+    </div>
+  );
 };
 
 export default Answer;
