@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import axios from "axios";
 import Cookies from "js-cookie";
 import styles from "./styles.module.css";
@@ -8,6 +9,8 @@ import Button from "../../components/atoms/Button/Button";
 import Link from "next/link";
 
 const LoginPage = () => {
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,9 +24,9 @@ const LoginPage = () => {
       ...body,
     });
 
-    // console.log(response.data.token);
     if (response.status == 200) {
       Cookies.set("jwtToken", response.data.token);
+      router.push("/");
     }
   };
 

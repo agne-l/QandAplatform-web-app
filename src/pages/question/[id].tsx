@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import Cookies from "js-cookie";
 import styles from "./styles.module.css";
 import Header from "../../components/organisms/Header/Header";
 import Footer from "../../components/organisms/Footer/Footer";
-import Question from "../../components/organisms/Question/Question";
+// import Question from "../../components/organisms/Question/Question";
 import Answers from "../../components/organisms/Answers/Answers";
 
 type QuestionType = {
@@ -45,11 +46,28 @@ const QuestionPage = () => {
     router.query.id && fetchQuestion(router.query.id as string);
   }, [router.query.id]);
 
+  const deleteQuestion = async () => {
+    const headers = {
+      authorization: Cookies.get("jwtToken"),
+    };
+
+    const response = await axios.delete(
+      `http://localhost:3001/questions/${router.query.id}`,
+      { headers }
+    );
+
+    if (response.status == 200) {
+      router.push("/");
+    }
+  };
+
   return (
     <div>
       <Header />
-      <div></div>
-      {question && <div>{question.question_text}</div>}
+      <div className={styles.questionWrapper}>
+        {question && <div>{question.question_text}</div>}
+        <button onClick={deleteQuestion}>delete question</button>
+      </div>
       <Answers answers={answers} />
       <Footer />
     </div>

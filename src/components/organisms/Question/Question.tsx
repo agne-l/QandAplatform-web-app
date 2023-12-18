@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
-
 import styles from "./Question.module.css";
 
 type QuestionType = {
@@ -15,11 +15,24 @@ type QuestionComponentType = {
 };
 
 const Question: React.FC<QuestionComponentType> = ({ question }) => {
+  const router = useRouter();
+  const id = question.id;
+
+  const formattedDate = new Date(question.date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
+
   return (
-    <Link href={`/question/${question.id}`} className={styles.question}>
-      <div className={styles.questionText}>{question.question_text}</div>
-      <div className={styles.questionDate}>{question.date}</div>
-    </Link>
+    <div className={styles.question}>
+      <Link href={`/question/${id}`} className={styles.questionText}>
+        {question.question_text}
+      </Link>
+      <div className={styles.questionDate}>{formattedDate}</div>
+    </div>
   );
 };
 

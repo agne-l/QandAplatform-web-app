@@ -5,13 +5,14 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  text-decoration: none;
   color: grey;
   cursor: default;
 }
 
 .questionText {
   color: rgb(91, 91, 189);
+  text-decoration: none;
+
   cursor: pointer;
 }
 .questionDate {

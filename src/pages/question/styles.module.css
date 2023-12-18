@@ -1,0 +1,10 @@
+.questionWrapper {
+  /* background-color: pink; */
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  font-size: 20px;
+
+  margin: auto;
+  margin-top: 3rem;
+}
