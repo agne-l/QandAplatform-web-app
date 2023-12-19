@@ -1,5 +1,6 @@
 .question {
-  padding: 4rem;
+  padding: 1rem;
+  padding-top: 4rem;
   padding-bottom: 2rem;
   border-top: 1px solid grey;
   display: flex;

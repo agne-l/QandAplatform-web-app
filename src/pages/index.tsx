@@ -7,11 +7,13 @@ import Header from "../components/organisms/Header/Header";
 import Questions from "../components/organisms/Questions/Questions";
 import Footer from "../components/organisms/Footer/Footer";
 import AskQuestionForm from "../components/organisms/AskQuestionForm/AskQuestionForm";
+import LoginModal from "../components/molecules/LoginModal/LoginModal";
 
 const HomePage = () => {
-  const router = useRouter();
+  // const router = useRouter();
 
   const [askQuestionForm, setAskQuestionForm] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
 
   // const [questionText, setQuestionText] = useState("");
 
@@ -48,6 +50,16 @@ const HomePage = () => {
     fetchData();
   }, []);
 
+  const checkLoggedInStatus = () => {
+    const token = Cookies.get("jwtToken");
+
+    if (token) {
+      setAskQuestionForm(true);
+    } else {
+      setLoginModal(true);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -68,13 +80,19 @@ const HomePage = () => {
       <div className={styles.allQuestionsWrapper}>
         <div className={styles.topWrapper}>
           <div>All Questions</div>
-          <button onClick={() => setAskQuestionForm(true)}>Ask Question</button>
+          <button onClick={checkLoggedInStatus}>Ask Question</button>
         </div>
         <Questions questions={questions} />
       </div>
       {/* </div> */}
       {askQuestionForm && (
         <AskQuestionForm onCancel={() => setAskQuestionForm(false)} />
+      )}
+      {loginModal && (
+        <LoginModal
+          onCancel={() => setLoginModal(false)}
+          text="ask a question"
+        />
       )}
       <Footer />
     </>

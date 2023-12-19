@@ -7,6 +7,9 @@ import Header from "../../components/organisms/Header/Header";
 import Footer from "../../components/organisms/Footer/Footer";
 // import Question from "../../components/organisms/Question/Question";
 import Answers from "../../components/organisms/Answers/Answers";
+import GiveAnswerForm from "../../components/organisms/GiveAnswerForm/GiveAnswerForm";
+import "../../components/molecules/LoginModal/LoginModal";
+import LoginModal from "../../components/molecules/LoginModal/LoginModal";
 
 type QuestionType = {
   question_text: string;
@@ -17,6 +20,18 @@ type QuestionType = {
 
 const QuestionPage = () => {
   const router = useRouter();
+
+  const [showGiveAnswerForm, setShowGiveAnswerForm] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
+  const [deleteButton, setDeleteButton] = useState(false);
+
+  const showDeleteButton = () => {
+    const token = Cookies.get("jwtToken");
+
+    if (token) {
+      setDeleteButton(true);
+    }
+  };
 
   const [question, setQuestion] = useState<QuestionType | null>(null);
   const [answers, setAnswers] = useState([]);
@@ -69,6 +84,7 @@ const QuestionPage = () => {
   useEffect(() => {
     router.query.id && fetchAnswers(router.query.id as string);
     router.query.id && fetchQuestion(router.query.id as string);
+    showDeleteButton();
   }, [router.query.id]);
 
   const deleteQuestion = async () => {
@@ -86,11 +102,21 @@ const QuestionPage = () => {
     }
   };
 
+  const checkLoggedInStatus = () => {
+    const token = Cookies.get("jwtToken");
+
+    if (token) {
+      setShowGiveAnswerForm(true);
+    } else {
+      setLoginModal(true);
+    }
+  };
+
   return (
     <div>
       <Header />
-      <div className={styles.wrapper}>
-        <div className={styles.sidebar}>
+      {/* <div className={styles.wrapper}> */}
+      {/* <div className={styles.sidebar}>
           <div className={styles.formWrapper}>
             <div>Give Answer</div>
             <textarea
@@ -102,26 +128,37 @@ const QuestionPage = () => {
               submit
             </button>
           </div>
-        </div>
-        <div className={styles.allAnswersWrapper}>
-          <div className={styles.questionWrapper}>
-            {question && (
-              <div className={styles.questionText}>
-                {question.question_text}
-              </div>
+        </div> */}
+      <div className={styles.allAnswersWrapper}>
+        {/* {question && (
+          <div className={styles.questionText}>{question.question_text}</div>
+        )} */}
+        <div className={styles.topWrapper}>
+          <div>All Answers</div>
+          <div className={styles.btnWrapper}>
+            <button onClick={checkLoggedInStatus}>Give Answer</button>
+            {deleteButton && (
+              <button onClick={deleteQuestion}>Delete Question</button>
             )}
-            <button onClick={deleteQuestion}>delete question</button>
           </div>
-          <Answers answers={answers} />
         </div>
-        <div></div>
+        <Answers answers={answers} />
       </div>
       <div></div>
-      {/* <div className={styles.questionWrapper}>
-        {question && <div>{question.question_text}</div>}
-        <button onClick={deleteQuestion}>delete question</button>
-      </div> */}
-      {/* <Answers answers={answers} /> */}
+      {/* </div> */}
+      <div></div>
+      {showGiveAnswerForm && (
+        <GiveAnswerForm
+          onCancel={() => setShowGiveAnswerForm(false)}
+          id={router.query.id as string}
+        />
+      )}
+      {loginModal && (
+        <LoginModal
+          onCancel={() => setLoginModal(false)}
+          text="answer the question"
+        />
+      )}
       <Footer />
     </div>
   );

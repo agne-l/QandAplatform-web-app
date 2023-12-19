@@ -21,7 +21,7 @@ const Answer: React.FC<AnswerComponentType> = ({ answer }) => {
   });
   return (
     <div className={styles.answer}>
-      <div>{answer.answer_text}</div>
+      <div className={styles.answerText}>{answer.answer_text}</div>
       <div className={styles.date}>{formattedDate}</div>
     </div>
   );
