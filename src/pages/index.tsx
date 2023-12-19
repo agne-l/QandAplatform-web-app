@@ -8,6 +8,7 @@ import Questions from "../components/organisms/Questions/Questions";
 import Footer from "../components/organisms/Footer/Footer";
 import AskQuestionForm from "../components/organisms/AskQuestionForm/AskQuestionForm";
 import LoginModal from "../components/molecules/LoginModal/LoginModal";
+import Button from "../components/atoms/Button/Button";
 
 const HomePage = () => {
   // const router = useRouter();
@@ -63,28 +64,15 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      {/* <div className={styles.wrapper}> */}
-      {/* <div className={styles.sidebar}>
-          <div className={styles.formWrapper}>
-            <div>Ask Anything</div>
-            <textarea
-              value={questionText}
-              onChange={(e) => setQuestionText(e.target.value)}
-              className={styles.textArea}
-            />
-            <button onClick={onAddQuestion} className={styles.submitBtn}>
-              submit
-            </button>
-          </div>
-        </div> */}
       <div className={styles.allQuestionsWrapper}>
         <div className={styles.topWrapper}>
-          <div>All Questions</div>
-          <button onClick={checkLoggedInStatus}>Ask Question</button>
+          <div className={styles.title}>All Questions</div>
+          <div className={styles.btnWrapper}>
+            <Button onClick={checkLoggedInStatus} text="Ask Question" />
+          </div>
         </div>
         <Questions questions={questions} />
       </div>
-      {/* </div> */}
       {askQuestionForm && (
         <AskQuestionForm onCancel={() => setAskQuestionForm(false)} />
       )}

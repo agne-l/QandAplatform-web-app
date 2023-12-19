@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import styles from "./GiveAnswerForm.module.css";
+import Button from "../../atoms/Button/Button";
 
 type GiveAnswerFormType = {
   onCancel: () => void;
@@ -41,15 +42,12 @@ const GiveAnswerForm: React.FC<GiveAnswerFormType> = ({ onCancel, id }) => {
       <button onClick={onCancel} className={styles.cancelBtn}>
         X
       </button>
-      {/* <div>Give Answer</div> */}
       <textarea
         value={answerText}
         onChange={(e) => setAnswerText(e.target.value)}
         className={styles.textArea}
       />
-      <button onClick={addAnswer} className={styles.submitBtn}>
-        submit
-      </button>
+      <Button onClick={addAnswer} text="Submit" />
     </div>
   );
 };

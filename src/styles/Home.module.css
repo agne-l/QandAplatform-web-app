@@ -62,4 +62,20 @@
   justify-content: space-between;
   padding: 1rem;
   box-sizing: border-box;
+
+  height: 10rem;
+  align-items: baseline;
+}
+
+.title {
+  font-size: 22px;
+  /* font-weight: 600; */
+  width: 35rem;
+}
+
+.btnWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
 }
