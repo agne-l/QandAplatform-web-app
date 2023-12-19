@@ -11,6 +11,7 @@ import GiveAnswerForm from "../../components/organisms/GiveAnswerForm/GiveAnswer
 import "../../components/molecules/LoginModal/LoginModal";
 import LoginModal from "../../components/molecules/LoginModal/LoginModal";
 import Button from "../../components/atoms/Button/Button";
+import DeleteModal from "../../components/organisms/DeleteModal/DeleteModal";
 
 type QuestionType = {
   question_text: string;
@@ -24,6 +25,8 @@ const QuestionPage = () => {
 
   const [showGiveAnswerForm, setShowGiveAnswerForm] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const [deleteButton, setDeleteButton] = useState(false);
 
   const showDeleteButton = () => {
@@ -124,7 +127,10 @@ const QuestionPage = () => {
           <div className={styles.btnWrapper}>
             <Button onClick={checkLoggedInStatus} text="Give Answer" />
             {deleteButton && (
-              <Button onClick={deleteQuestion} text="Delete Question" />
+              <Button
+                onClick={() => setShowDeleteModal(true)}
+                text="Delete Question"
+              />
             )}
           </div>
         </div>
@@ -142,6 +148,12 @@ const QuestionPage = () => {
         <LoginModal
           onCancel={() => setLoginModal(false)}
           text="answer the question"
+        />
+      )}
+      {showDeleteModal && (
+        <DeleteModal
+          onCancel={() => setShowDeleteModal(false)}
+          onConfirm={deleteQuestion}
         />
       )}
       <Footer />
