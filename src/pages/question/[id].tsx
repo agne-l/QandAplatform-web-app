@@ -5,13 +5,13 @@ import Cookies from "js-cookie";
 import styles from "./styles.module.css";
 import Header from "../../components/organisms/Header/Header";
 import Footer from "../../components/organisms/Footer/Footer";
-// import Question from "../../components/organisms/Question/Question";
 import Answers from "../../components/organisms/Answers/Answers";
 import GiveAnswerForm from "../../components/organisms/GiveAnswerForm/GiveAnswerForm";
 import "../../components/molecules/LoginModal/LoginModal";
 import LoginModal from "../../components/molecules/LoginModal/LoginModal";
 import Button from "../../components/atoms/Button/Button";
 import DeleteModal from "../../components/organisms/DeleteModal/DeleteModal";
+import DeleteAnswerModal from "../../components/organisms/DeleteAnswerModal/DeleteAnswerModal";
 
 type QuestionType = {
   question_text: string;
@@ -26,6 +26,7 @@ const QuestionPage = () => {
   const [showGiveAnswerForm, setShowGiveAnswerForm] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showDeleteAnswerModal, setShowDeleteAnswerModal] = useState(false);
 
   const [deleteButton, setDeleteButton] = useState(false);
 
@@ -39,31 +40,9 @@ const QuestionPage = () => {
 
   const [question, setQuestion] = useState<QuestionType | null>(null);
   const [answers, setAnswers] = useState([]);
-  const [answer, setAnswer] = useState("");
+  // const [answer, setAnswer] = useState("");
 
-  // const giveAnswer = async () => {
-  //   console.log(router.query.id);
-
-  //   const newAnswer = {
-  //     answer_text: answer,
-  //     question_id: router.query.id,
-  //   };
-
-  //   const headers = {
-  //     authorization: Cookies.get("jwtToken"),
-  //   };
-
-  //   const response = await axios.post(
-  //     `http://localhost:3001/answers/questions/${router.query.id}`,
-  //     { ...newAnswer },
-  //     { headers }
-  //   );
-
-  //   console.log(response);
-  //   if (response.status == 200) {
-  //     window.location.reload();
-  //   }
-  // };
+  const [selectedAnswerId, setSelectedAnswerId] = useState("");
 
   const fetchAnswers = async (id: string) => {
     try {
@@ -106,6 +85,24 @@ const QuestionPage = () => {
     }
   };
 
+  const deleteAnswer = async () => {
+    try {
+      const headers = {
+        authorization: Cookies.get("jwtToken"),
+      };
+      const response = await axios.delete(
+        `http://localhost:3001/answers/${selectedAnswerId}`,
+        { headers }
+      );
+
+      if (response.status == 200) {
+        window.location.reload();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const checkLoggedInStatus = () => {
     const token = Cookies.get("jwtToken");
 
@@ -134,7 +131,13 @@ const QuestionPage = () => {
             )}
           </div>
         </div>
-        {answers && <Answers answers={answers} />}
+        {answers && (
+          <Answers
+            answers={answers}
+            setShowDeleteAnswerModal={() => setShowDeleteAnswerModal(true)}
+            setSelectedAnswerId={(id: string) => setSelectedAnswerId(id)}
+          />
+        )}
       </div>
       <div></div>
       <div></div>
@@ -154,6 +157,12 @@ const QuestionPage = () => {
         <DeleteModal
           onCancel={() => setShowDeleteModal(false)}
           onConfirm={deleteQuestion}
+        />
+      )}
+      {showDeleteAnswerModal && (
+        <DeleteAnswerModal
+          onConfirm={deleteAnswer}
+          onCancel={() => setShowDeleteAnswerModal(false)}
         />
       )}
       <Footer />
