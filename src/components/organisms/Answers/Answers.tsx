@@ -6,12 +6,16 @@ type AnswersType = {
   answers: Array<any> | null;
   setShowDeleteAnswerModal: () => void;
   setSelectedAnswerId: (id: string) => void;
+  showDeleteAnswerBtn: boolean;
+  checkLoggedInStatusForDeleteButton: () => void;
 };
 
 const Answers: React.FC<AnswersType> = ({
   answers,
   setShowDeleteAnswerModal,
   setSelectedAnswerId,
+  showDeleteAnswerBtn,
+  checkLoggedInStatusForDeleteButton,
 }) => {
   return (
     <div className={styles.wrapper}>
@@ -23,6 +27,10 @@ const Answers: React.FC<AnswersType> = ({
                 answer={answer}
                 setShowDeleteAnswerModal={setShowDeleteAnswerModal}
                 setSelectedAnswerId={(id: string) => setSelectedAnswerId(id)}
+                showDeleteAnswerBtn={showDeleteAnswerBtn}
+                checkLoggedInStatusForDeleteButton={
+                  checkLoggedInStatusForDeleteButton
+                }
               />
             </div>
           );

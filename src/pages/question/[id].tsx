@@ -23,8 +23,12 @@ type QuestionType = {
 const QuestionPage = () => {
   const router = useRouter();
 
+  const [showDeleteAnswerBtn, setShowDeleteAnswerBtn] = useState(false);
+
   const [showGiveAnswerForm, setShowGiveAnswerForm] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
+
+  // const [showDeleteButtons, setShowDeleteButtons] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDeleteAnswerModal, setShowDeleteAnswerModal] = useState(false);
 
@@ -113,6 +117,16 @@ const QuestionPage = () => {
     }
   };
 
+  const checkLoggedInStatusForDeleteButton = () => {
+    const token = Cookies.get("jwtToken");
+
+    if (token) {
+      setShowDeleteAnswerBtn(true);
+    } else {
+      setShowDeleteAnswerBtn(false);
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -136,6 +150,10 @@ const QuestionPage = () => {
             answers={answers}
             setShowDeleteAnswerModal={() => setShowDeleteAnswerModal(true)}
             setSelectedAnswerId={(id: string) => setSelectedAnswerId(id)}
+            showDeleteAnswerBtn={showDeleteAnswerBtn}
+            checkLoggedInStatusForDeleteButton={
+              checkLoggedInStatusForDeleteButton
+            }
           />
         )}
       </div>

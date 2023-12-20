@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import styles from "./Answer.module.css";
 import Button from "../../atoms/Button/Button";
 
@@ -13,12 +14,16 @@ type AnswerComponentType = {
   answer: AnswerType;
   setShowDeleteAnswerModal: () => void;
   setSelectedAnswerId: (id: string) => void;
+  showDeleteAnswerBtn: boolean;
+  checkLoggedInStatusForDeleteButton: () => void;
 };
 
 const Answer: React.FC<AnswerComponentType> = ({
   answer,
   setShowDeleteAnswerModal,
   setSelectedAnswerId,
+  showDeleteAnswerBtn,
+  checkLoggedInStatusForDeleteButton,
 }) => {
   const answerId = answer.id;
 
@@ -27,6 +32,10 @@ const Answer: React.FC<AnswerComponentType> = ({
     console.log(id);
     setSelectedAnswerId(id);
   };
+
+  useEffect(() => {
+    checkLoggedInStatusForDeleteButton();
+  }, []);
 
   const formattedDate = new Date(answer.date).toLocaleDateString("en-US", {
     year: "numeric",
@@ -41,7 +50,12 @@ const Answer: React.FC<AnswerComponentType> = ({
       <div className={styles.bottomWrapper}>
         <div className={styles.date}>{formattedDate}</div>
         <div className={styles.btnWrapper}>
-          <Button onClick={() => handleClick(answerId)} text="Delete Answer" />
+          {showDeleteAnswerBtn && (
+            <Button
+              onClick={() => handleClick(answerId)}
+              text="Delete Answer"
+            />
+          )}
         </div>
       </div>
     </div>
