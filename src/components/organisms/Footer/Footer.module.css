@@ -8,4 +8,10 @@
   padding-right: 3rem;
 
   /* margin-top: 30rem; */
+
+  color: #202020;
+  background-color: rgb(243, 240, 240);
+  text-transform: uppercase;
+  font-size: 12px;
+  font-family: sans-serif;
 }

@@ -30,4 +30,87 @@
   align-items: flex-end;
   gap: 1rem;
   align-self: flex-end;
+
+  width: 100%;
+}
+
+.btnWrapper {
+  display: flex;
+  /* flex-direction: column-reverse; */
+  /* gap: 1rem; */
+  width: 100%;
+  justify-content: space-between;
+  /* align-items: center; */
+  /* align-items: flex-end; */
+}
+
+.likeAndDislikeButtonsWrapper {
+  display: flex;
+  gap: 0.5rem;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.likeBtn {
+  all: unset;
+  width: 4rem;
+  font-size: 12px;
+  /* background-color: white; */
+  padding: 0.5rem;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  border: 1px solid #333;
+  color: #333;
+  background: #fff;
+}
+
+.clickedLikeBtn {
+  all: unset;
+  width: 4rem;
+  font-size: 12px;
+  /* background-color: white; */
+  padding: 0.5rem;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  border: 1px solid #333;
+  color: #333;
+  background: #fff;
+
+  background-color: rgb(209, 214, 242);
+}
+
+.dislikeBtn {
+  all: unset;
+  width: 4rem;
+  font-size: 12px;
+  /* background-color: white; */
+  padding: 0.5rem;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  border: 1px solid #333;
+  color: #333;
+  background: #fff;
+}
+
+.clickedDislikeBtn {
+  all: unset;
+  width: 4rem;
+  font-size: 12px;
+  /* background-color: white; */
+  padding: 0.5rem;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  border: 1px solid #333;
+  color: #333;
+  background: #fff;
+
+  background-color: rgb(209, 214, 242);
 }

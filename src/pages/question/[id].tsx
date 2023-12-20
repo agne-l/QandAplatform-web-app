@@ -24,6 +24,8 @@ const QuestionPage = () => {
   const router = useRouter();
 
   const [showDeleteAnswerBtn, setShowDeleteAnswerBtn] = useState(false);
+  const [showLikeAndDislikeButtons, setShowLikeAndDislikeButtons] =
+    useState(false);
 
   const [showGiveAnswerForm, setShowGiveAnswerForm] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
@@ -122,8 +124,10 @@ const QuestionPage = () => {
 
     if (token) {
       setShowDeleteAnswerBtn(true);
+      setShowLikeAndDislikeButtons(true);
     } else {
       setShowDeleteAnswerBtn(false);
+      setShowLikeAndDislikeButtons(false);
     }
   };
 
@@ -154,6 +158,7 @@ const QuestionPage = () => {
             checkLoggedInStatusForDeleteButton={
               checkLoggedInStatusForDeleteButton
             }
+            showLikeAndDislikeButtons={showLikeAndDislikeButtons}
           />
         )}
       </div>

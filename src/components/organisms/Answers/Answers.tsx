@@ -8,6 +8,7 @@ type AnswersType = {
   setSelectedAnswerId: (id: string) => void;
   showDeleteAnswerBtn: boolean;
   checkLoggedInStatusForDeleteButton: () => void;
+  showLikeAndDislikeButtons: boolean;
 };
 
 const Answers: React.FC<AnswersType> = ({
@@ -16,6 +17,7 @@ const Answers: React.FC<AnswersType> = ({
   setSelectedAnswerId,
   showDeleteAnswerBtn,
   checkLoggedInStatusForDeleteButton,
+  showLikeAndDislikeButtons,
 }) => {
   return (
     <div className={styles.wrapper}>
@@ -31,6 +33,7 @@ const Answers: React.FC<AnswersType> = ({
                 checkLoggedInStatusForDeleteButton={
                   checkLoggedInStatusForDeleteButton
                 }
+                showLikeAndDislikeButtons={showLikeAndDislikeButtons}
               />
             </div>
           );
