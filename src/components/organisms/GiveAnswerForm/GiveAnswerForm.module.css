@@ -6,16 +6,12 @@
   top: 50%;
   transform: translate(-50%, -50%);
   padding: 1rem;
-  /* padding-top: 2rem; */
   padding-bottom: 3rem;
-
-  width: 35%;
+  width: 80%;
   height: 45%;
   box-sizing: border-box;
-
   display: flex;
   flex-direction: column;
-  /* gap: 2rem; */
   align-items: center;
   justify-content: space-between;
 }
@@ -45,4 +41,51 @@
   text-align: center;
   text-decoration: none;
   color: blue;
+}
+
+@media screen and (min-width: 768px) {
+  .giveAnswerForm {
+    /* background-color: rgb(208, 208, 241);
+    position: fixed;
+    margin: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1rem;
+    padding-bottom: 3rem; */
+    width: 35%;
+    /* height: 45%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; */
+  }
+
+  /* .textArea {
+    height: 8rem;
+    resize: none;
+    outline: none;
+    width: 60%;
+    box-sizing: border-box;
+  }
+
+  .submitBtn {
+    width: 60%;
+  }
+
+  .cancelBtn {
+    all: unset;
+    align-self: self-end;
+  }
+
+  .msgWrapper {
+    font-size: 13px;
+    width: 100%;
+    height: 1rem;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    color: blue;
+  } */
 }

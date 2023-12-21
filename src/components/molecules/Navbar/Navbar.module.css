@@ -1,5 +1,7 @@
 .navbar {
-  display: flex;
+  /* display: flex; */
+  display: none;
+
   align-items: center;
 }
 
@@ -14,4 +16,24 @@
   display: flex;
   list-style: none;
   gap: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    display: flex;
+    align-items: center;
+  }
+
+  /* .searchbar {
+    width: 15rem;
+    padding-left: 1rem;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-family: sans-serif;
+  }
+  .navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+  } */
 }

@@ -41,7 +41,7 @@ const LoginPage = () => {
   const text = `Don't have an account?`;
   return (
     <PageTemplate>
-      <>
+      <div className={styles.main}>
         <div className={styles.wrapper}>
           <div className={styles.emailInputWrapper}>
             <div>Email</div>
@@ -63,7 +63,7 @@ const LoginPage = () => {
           </Link>
         </div>
         {showMessage && <div className={styles.msgWrapper}>{message}</div>}
-      </>
+      </div>
     </PageTemplate>
   );
 };

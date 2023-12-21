@@ -6,18 +6,13 @@
   top: 50%;
   transform: translate(-50%, -50%);
   padding: 1rem;
-  /* padding-top: 2rem; */
   padding-bottom: 3rem;
-
-  width: 35%;
+  width: 80%;
   height: 45%;
   box-sizing: border-box;
-
   display: flex;
   flex-direction: column;
-  /* gap: 2rem; */
   align-items: center;
-  /* justify-content: space-between; */
 }
 
 .msg {
@@ -34,4 +29,39 @@
 .cancelBtn {
   all: unset;
   align-self: self-end;
+}
+
+@media screen and (min-width: 768px) {
+  .deleteModal {
+    /* background-color: rgb(208, 208, 241);
+    position: fixed;
+    margin: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1rem;
+    padding-bottom: 3rem; */
+    width: 35%;
+    /* height: 45%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center; */
+  }
+
+  /* .msg {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .btnWrapper {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .cancelBtn {
+    all: unset;
+    align-self: self-end;
+  } */
 }

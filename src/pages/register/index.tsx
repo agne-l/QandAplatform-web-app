@@ -69,7 +69,7 @@ const RegisterPage = () => {
   };
   return (
     <PageTemplate>
-      <>
+      <div className={styles.main}>
         <div className={styles.wrapper}>
           <div className={styles.nameInputWrapper}>
             <div>Name</div>
@@ -90,7 +90,7 @@ const RegisterPage = () => {
           <Button onClick={signUp} text="Sign up" />
         </div>
         {showMessage && <div className={styles.messageWrapper}>{message}</div>}
-      </>
+      </div>
     </PageTemplate>
   );
 };
