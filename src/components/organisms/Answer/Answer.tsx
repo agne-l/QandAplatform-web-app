@@ -112,7 +112,9 @@ const Answer: React.FC<AnswerComponentType> = ({
 
   return (
     <div className={styles.answer}>
-      <div className={styles.answerText}>{answer.answer_text}</div>
+      <div className={styles.answerContainer}>
+        <pre className={styles.answerText}>{answer.answer_text}</pre>
+      </div>
       <div className={styles.bottomWrapper}>
         <div className={styles.date}>{formattedDate}</div>
         <div className={styles.btnWrapper}>

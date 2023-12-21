@@ -17,6 +17,9 @@
   line-height: 1.5;
   width: 100%;
   overflow: hidden;
+  font-family: sans-serif;
+  /* overflow-wrap: break-word; */
+  white-space: pre-wrap;
 }
 
 .date {
