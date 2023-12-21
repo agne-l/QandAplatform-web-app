@@ -3,8 +3,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Cookies from "js-cookie";
 import styles from "./styles.module.css";
-import Header from "../../components/organisms/Header/Header";
-import Footer from "../../components/organisms/Footer/Footer";
+import PageTemplate from "../../components/organisms/PageTemplate/PageTemplate";
 import Answers from "../../components/organisms/Answers/Answers";
 import GiveAnswerForm from "../../components/organisms/GiveAnswerForm/GiveAnswerForm";
 import "../../components/molecules/LoginModal/LoginModal";
@@ -132,64 +131,64 @@ const QuestionPage = () => {
   };
 
   return (
-    <div>
-      <Header />
-      <div className={styles.allAnswersWrapper}>
-        <div className={styles.topWrapper}>
-          {question && (
-            <div className={styles.title}>{question.question_text}</div>
-          )}
-          <div className={styles.btnWrapper}>
-            <Button onClick={checkLoggedInStatus} text="Give Answer" />
-            {deleteButton && (
-              <Button
-                onClick={() => setShowDeleteModal(true)}
-                text="Delete Question"
-              />
+    <PageTemplate>
+      <>
+        <div className={styles.allAnswersWrapper}>
+          <div className={styles.topWrapper}>
+            {question && (
+              <div className={styles.title}>{question.question_text}</div>
             )}
+            <div className={styles.btnWrapper}>
+              <Button onClick={checkLoggedInStatus} text="Give Answer" />
+              {deleteButton && (
+                <Button
+                  onClick={() => setShowDeleteModal(true)}
+                  text="Delete Question"
+                />
+              )}
+            </div>
           </div>
+          {answers && (
+            <Answers
+              answers={answers}
+              setShowDeleteAnswerModal={() => setShowDeleteAnswerModal(true)}
+              setSelectedAnswerId={(id: string) => setSelectedAnswerId(id)}
+              showDeleteAnswerBtn={showDeleteAnswerBtn}
+              checkLoggedInStatusForDeleteButton={
+                checkLoggedInStatusForDeleteButton
+              }
+              showLikeAndDislikeButtons={showLikeAndDislikeButtons}
+            />
+          )}
         </div>
-        {answers && (
-          <Answers
-            answers={answers}
-            setShowDeleteAnswerModal={() => setShowDeleteAnswerModal(true)}
-            setSelectedAnswerId={(id: string) => setSelectedAnswerId(id)}
-            showDeleteAnswerBtn={showDeleteAnswerBtn}
-            checkLoggedInStatusForDeleteButton={
-              checkLoggedInStatusForDeleteButton
-            }
-            showLikeAndDislikeButtons={showLikeAndDislikeButtons}
+        <div></div>
+        <div></div>
+        {showGiveAnswerForm && (
+          <GiveAnswerForm
+            onCancel={() => setShowGiveAnswerForm(false)}
+            id={router.query.id as string}
           />
         )}
-      </div>
-      <div></div>
-      <div></div>
-      {showGiveAnswerForm && (
-        <GiveAnswerForm
-          onCancel={() => setShowGiveAnswerForm(false)}
-          id={router.query.id as string}
-        />
-      )}
-      {loginModal && (
-        <LoginModal
-          onCancel={() => setLoginModal(false)}
-          text="answer the question"
-        />
-      )}
-      {showDeleteModal && (
-        <DeleteModal
-          onCancel={() => setShowDeleteModal(false)}
-          onConfirm={deleteQuestion}
-        />
-      )}
-      {showDeleteAnswerModal && (
-        <DeleteAnswerModal
-          onConfirm={deleteAnswer}
-          onCancel={() => setShowDeleteAnswerModal(false)}
-        />
-      )}
-      <Footer />
-    </div>
+        {loginModal && (
+          <LoginModal
+            onCancel={() => setLoginModal(false)}
+            text="answer the question"
+          />
+        )}
+        {showDeleteModal && (
+          <DeleteModal
+            onCancel={() => setShowDeleteModal(false)}
+            onConfirm={deleteQuestion}
+          />
+        )}
+        {showDeleteAnswerModal && (
+          <DeleteAnswerModal
+            onConfirm={deleteAnswer}
+            onCancel={() => setShowDeleteAnswerModal(false)}
+          />
+        )}
+      </>
+    </PageTemplate>
   );
 };
 

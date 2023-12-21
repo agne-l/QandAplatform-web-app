@@ -10,6 +10,9 @@ type GiveAnswerFormType = {
 };
 
 const GiveAnswerForm: React.FC<GiveAnswerFormType> = ({ onCancel, id }) => {
+  const [message, setMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
+
   const [answerText, setAnswerText] = useState("");
 
   const addAnswer = async () => {
@@ -35,6 +38,8 @@ const GiveAnswerForm: React.FC<GiveAnswerFormType> = ({ onCancel, id }) => {
       }
     } catch (err) {
       console.log(err);
+      setMessage("Please provide a valid answer.");
+      setShowMessage(true);
     }
   };
   return (
@@ -48,6 +53,11 @@ const GiveAnswerForm: React.FC<GiveAnswerFormType> = ({ onCancel, id }) => {
         className={styles.textArea}
       />
       <Button onClick={addAnswer} text="Submit" />
+      {showMessage ? (
+        <div className={styles.msgWrapper}>{message}</div>
+      ) : (
+        <div className={styles.msgWrapper}></div>
+      )}
     </div>
   );
 };

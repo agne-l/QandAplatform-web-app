@@ -11,25 +11,34 @@ type AskQuestionFormType = {
 const AskQuestionForm: React.FC<AskQuestionFormType> = ({ onCancel }) => {
   const [questionText, setQuestionText] = useState("");
 
+  const [message, setMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
+
   const addQuestion = async () => {
-    const body = {
-      question_text: questionText,
-    };
+    try {
+      const body = {
+        question_text: questionText,
+      };
 
-    const headers = {
-      authorization: Cookies.get("jwtToken"),
-    };
+      const headers = {
+        authorization: Cookies.get("jwtToken"),
+      };
 
-    const response = await axios.post(
-      "http://localhost:3001/questions",
-      {
-        ...body,
-      },
-      { headers }
-    );
+      const response = await axios.post(
+        "http://localhost:3001/questions",
+        {
+          ...body,
+        },
+        { headers }
+      );
 
-    if (response.status == 200) {
-      window.location.reload();
+      if (response.status == 200) {
+        window.location.reload();
+      }
+    } catch (err) {
+      console.log(err);
+      setMessage("Please provide a valid question.");
+      setShowMessage(true);
     }
   };
   return (
@@ -43,6 +52,11 @@ const AskQuestionForm: React.FC<AskQuestionFormType> = ({ onCancel }) => {
         className={styles.textArea}
       />
       <Button onClick={addQuestion} text="submit" />
+      {showMessage ? (
+        <div className={styles.msgWrapper}>{message}</div>
+      ) : (
+        <div className={styles.msgWrapper}></div>
+      )}
     </div>
   );
 };

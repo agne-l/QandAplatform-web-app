@@ -36,3 +36,14 @@
 
   text-decoration: none;
 }
+
+.msgWrapper {
+  font-size: 13px;
+  width: 20%;
+  text-align: center;
+  margin: auto;
+  margin-top: 2rem;
+
+  text-decoration: none;
+  color: blue;
+}
